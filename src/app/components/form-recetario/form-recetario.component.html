@@ -1,0 +1,28 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Crear recetario</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body ">
+        <form>
+          <!-- Titulo input -->
+          <div class="form-outline mb-4">
+            <label class="form-label" for="form4Example1">Título</label>
+            <input type="text" id="form4Example1" class="form-control" name="titulo" [(ngModel)]="form.title" #title="ngModel" />
+          </div>
+          <!-- Description input -->
+          <div class="form-outline mb-4">
+            <label class="form-label" for="form4Example2">Descripción</label>
+            <textarea type="text"  rows="4" id="form4Example2" class="form-control" name="description" [(ngModel)]="form.description" #description="ngModel"  ></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')" >Añadir recetario</button>
+          </div>        
+        </form>
+    </div>
+    
+  </ng-template>
+  
+  <button class="btn btn-lg btn-outline-success" (click)="open(content)">Añadir recetario</button>

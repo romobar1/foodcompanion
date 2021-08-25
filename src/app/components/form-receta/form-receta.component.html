@@ -1,0 +1,64 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Crear receta</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body ">
+        <form>
+          <!-- Titulo input -->
+          <div class="form-outline mb-4">
+            <label class="form-label" for="form4Example1">Título</label>
+            <input type="text" id="form4Example1" class="form-control" name="titulo"  [(ngModel)]="form.title" #title="ngModel">
+          </div>
+          <!-- Description input -->
+          <div class="form-outline mb-4">
+            <label class="form-label" for="form4Example2">Descripción</label>
+            <textarea type="text"  rows="4" id="form4Example2" class="form-control" name="description" [(ngModel)]="form.description" #description="ngModel" ></textarea>
+          </div>
+          <div class="form-outline mb-4">
+            <label class="form-label" for="form4Example2">Imagen: </label>
+            <input class="form-control" type="file" name="imageUrl"  name="imageUrl" (change)="onFileSelected($event)" >       
+          </div>
+          <div class="form-outline mb-4">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-3">
+                            <label class="form-label" for="form4Example2"> Nº comensales</label> <input type="text" id="numComensales" name="numComensales" class="form-control" [(ngModel)]="form.numComensales" #numComensales="ngModel" />
+                        </div>
+                        <div class="col-3">
+                            <label class="form-label" for="form4Example2">Tiempo de preparación</label> <input type="text" id="tiempo" name="tiempo"  class="form-control" [(ngModel)]="form.tiempo" #tiempo="ngModel" />
+                        </div>
+                        <div class="col-3">
+                            <label class="form-label" for="form4Example2">Tipo de receta</label> <input type="text" id="type" class="form-control" name="type" [(ngModel)]="form.type" #type="ngModel" />
+                        </div>
+                        <div class="col-3">
+                            <label class="form-label" for="form4Example2">Nivel de dificultad</label> <input type="text" id="dificultad" name="dificultad" [(ngModel)]="form.dificultad" #dificultad="ngModel" class="form-control"  />
+                        </div>
+                    </div>
+                </div>
+          </div>
+          <div class="form-outline mb-4">
+            <label class="form-label" for="form4Example3">Tags</label>
+            <div id="emailHelp" class="form-text">Los tags separados por comas.</div>
+            <input type="text" id="tags" class="form-control" name="tags" [(ngModel)]="tagsString" (change)="parseConditions()" #tags="ngModel" />
+          </div>
+          <div class="form-outline mb-4">
+            <label class="form-label" for="form4Example3">Ingredientes</label>
+            <textarea class="form-control" id="form4Example3" rows="4" id="ingredientes" name="ingredientes" [(ngModel)]="form.ingredientes" #ingredientes="ngModel"></textarea>
+          </div>
+          <div class="form-outline mb-4">
+            <label class="form-label" for="form4Example3">Desarrollo de la receta</label>
+            <textarea class="form-control" id="form4Example3" rows="4" id="boody" name="body" [(ngModel)]="form.body" #body="ngModel"></textarea>
+          </div>
+        
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Añadir receta</button>
+          </div>        
+        </form>
+    </div>
+    
+  </ng-template>
+  
+  <button class="btn btn-lg btn-outline-success" (click)="open(content)">Añadir receta</button>

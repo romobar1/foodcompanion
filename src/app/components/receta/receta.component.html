@@ -1,0 +1,71 @@
+<div class="container p-12 mb-4">
+    <div class="row">
+        <div class="col-12 border">
+           <p class="h2"> {{receta?.title}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 border">
+            <img src="http:{{receta?.imageURl}}"  class="img-fluid mx-auto d-block"  width="500" height="500" alt="sample">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3 border">
+            <p class="h2">{{receta?.numComensales}} <i class="bi bi-people icon-size"></i></p>
+        </div>
+        <div class="col-3 border">
+            <p class="h2">{{receta?.tiempo}} <i class="bi-alarm  icon-size"></i></p>
+        </div>
+        <div class="col-3 border">
+            <p class="h2">{{receta?.dificultad}} <i class="bi bi-file-diff-fill  icon-size"></i></p>
+        </div>
+        <div class="col-3 border d-flex align-items-center">
+            <p class="h5"> <span *ngFor="let tag of receta?.tags" class="badge bg-secondary">{{tag}}</span></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 border">
+            <p class="h4">Ingredientes</p>
+            {{receta?.ingredientes}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 border">
+            <p class="h4">Descrición</p>
+            {{receta?.description}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 border">
+            <p class="h4">Instrucciones de la receta</p>
+            {{receta?.body}}
+        </div>
+    </div>
+    
+</div>
+
+<div class="container p-3">
+    <div class="row">
+        <br>
+        <div class="col-12">
+            <p class="h3">Comentarios</p>
+        </div>
+        <!-- Coments si la receta tiene -->
+        <hr>
+        <div class="clas-12" *ngFor="let coment of comentario">
+            <p class="h5">El usuario {{coment.userName}} comenta:</p>
+            <p >{{coment.date.substring(0, 10)}}</p>
+            <p class="">{{coment.body}}</p>
+        </div>
+        <br>
+        <hr>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <p class="h4"> Escribir un comentario</p>
+            <textarea class="form-control" id="form4Example3" rows="4" id="boody" name="body" [(ngModel)]="form.body" #body="ngModel"></textarea>
+        </div>
+    </div>
+    <br>
+    <button class="btn btn-outline-success justify-content-end" [disabled]="form.body===''" (click)="save()" >Publicar comentario</button>
+</div>
