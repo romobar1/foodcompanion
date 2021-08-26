@@ -41,7 +41,7 @@ export class FormRecetaComponent implements OnInit {
    }
 
   open(content: any) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result: any) => {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title' ,size: 'xl'}).result.then((result: any) => {
       this.upload()
       this.save()
       this.closeResult = `Closed with: ${result}`;

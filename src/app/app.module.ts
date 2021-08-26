@@ -15,6 +15,8 @@ import { FormRecetaComponent } from './components/form-receta/form-receta.compon
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { FormRecetarioComponent } from './components/form-recetario/form-recetario.component';
 import { FormEditRecetaComponent } from './components/form-edit-receta/form-edit-receta.component';
+import { FormUserComponent } from './components/form-user/form-user.component';
+import { FormAddToRecetarioComponent } from './components/form-add-to-recetario/form-add-to-recetario.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { FormEditRecetaComponent } from './components/form-edit-receta/form-edit
     FormRecetaComponent,
     FormRecetarioComponent,
     FormEditRecetaComponent,
+    FormUserComponent,
+    FormAddToRecetarioComponent,
   ],
   imports: [
     BrowserModule,

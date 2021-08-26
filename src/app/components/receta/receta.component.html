@@ -1,47 +1,61 @@
-<div class="container p-12 mb-4">
+   <div class="container p-12 mb-4 ">
     <div class="row">
-        <div class="col-12 border">
-           <p class="h2"> {{receta?.title}}</p>
+        <div class="col-xl-10 col-sm-10 mt-4 ">
+            <p class="h2"> {{receta?.title}}</p>
+        </div>
+    </div>
+    <div class="row ">
+        <div class=" col-xl-10 col-sm-10   d-flex justify-content-end">
+            <ng-container *ngIf="isUserLoggedIn">
+                <app-form-add-to-recetario [recetaId]="receta.id"></app-form-add-to-recetario>
+            </ng-container>
         </div>
     </div>
     <div class="row">
-        <div class="col-12 border">
-            <img src="http:{{receta?.imageURl}}"  class="img-fluid mx-auto d-block"  width="500" height="500" alt="sample">
+        <div class="col-xl-10 col-sm-10">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 mt-2 p-1">
+                        <img src="http:{{receta?.imageURl}}" class="img-fluid mx-auto d-block" width="500" height="500"
+                            alt="sample">
+                    </div>
+                </div>
+                <div class="row  mt-2">
+                    <div class="col-xl-3 col-sm-6 col-6 border p-2">
+                        <p class="h4">{{receta?.numComensales}} <i class="bi bi-people icon-size"></i></p>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 col-6 border p-2">
+                        <p class="h4">{{receta?.tiempo}} <i class="bi-alarm  icon-size"></i></p>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 col-6 border p-2">
+                        <p class="h4">{{receta?.dificultad}} <i class="bi bi-file-diff-fill  icon-size"></i></p>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 col-6 border d-flex align-items-center p-2">
+                        <p class="h5"> <span *ngFor="let tag of receta?.tags" class="badge bg-secondary">{{tag}}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 mt-2 p-2">
+                        <p class="h4 text-decoration-underline">Ingredientes</p>
+                        <p class="fw-light">{{receta?.ingredientes}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 mt-2 p-2">
+                        <p class="h4 text-decoration-underline">Descripción</p>
+                        <p class="fw-light">{{receta?.description}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 mt-2 p-2">
+                        <p class="h4 text-decoration-underline">Instrucciones de la receta</p>
+                        <p class="fw-light">{{receta?.body}}</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-3 border">
-            <p class="h2">{{receta?.numComensales}} <i class="bi bi-people icon-size"></i></p>
-        </div>
-        <div class="col-3 border">
-            <p class="h2">{{receta?.tiempo}} <i class="bi-alarm  icon-size"></i></p>
-        </div>
-        <div class="col-3 border">
-            <p class="h2">{{receta?.dificultad}} <i class="bi bi-file-diff-fill  icon-size"></i></p>
-        </div>
-        <div class="col-3 border d-flex align-items-center">
-            <p class="h5"> <span *ngFor="let tag of receta?.tags" class="badge bg-secondary">{{tag}}</span></p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12 border">
-            <p class="h4">Ingredientes</p>
-            {{receta?.ingredientes}}
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12 border">
-            <p class="h4">Descrición</p>
-            {{receta?.description}}
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12 border">
-            <p class="h4">Instrucciones de la receta</p>
-            {{receta?.body}}
-        </div>
-    </div>
-    
 </div>
 
 <div class="container p-3">
@@ -54,7 +68,7 @@
         <hr>
         <div class="clas-12" *ngFor="let coment of comentario">
             <p class="h5">El usuario {{coment.userName}} comenta:</p>
-            <p >{{coment.date.substring(0, 10)}}</p>
+            <p>{{coment.date.substring(0, 10)}}</p>
             <p class="">{{coment.body}}</p>
         </div>
         <br>
@@ -63,9 +77,11 @@
     <div class="row">
         <div class="col-12">
             <p class="h4"> Escribir un comentario</p>
-            <textarea class="form-control" id="form4Example3" rows="4" id="boody" name="body" [(ngModel)]="form.body" #body="ngModel"></textarea>
+            <textarea class="form-control" id="form4Example3" rows="4" id="boody" name="body" [(ngModel)]="form.body"
+                #body="ngModel"></textarea>
         </div>
     </div>
     <br>
-    <button class="btn btn-outline-success justify-content-end" [disabled]="form.body===''" (click)="save()" >Publicar comentario</button>
+    <button class="btn btn-outline-success justify-content-end" [disabled]="form.body===''" (click)="save()">Publicar
+        comentario</button>
 </div>

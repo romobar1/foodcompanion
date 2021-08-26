@@ -1,0 +1,61 @@
+
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6 text-black d-flex align-items-center">
+    
+        <div class="d-flex align-items-center  px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+    
+          <form style="width: 23rem;" name="form" 
+          name="form"
+          (ngSubmit)="onSubmit()"
+          #f="ngForm"
+          novalidate>
+    
+            <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Crear cuenta de usuario</h3>
+    
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form2Example17">Nombre de usuario</label>
+              <input type="text" id="form2Example17" class="form-control form-control-lg" [(ngModel)]="form.username"
+              required
+              name="username"
+              minlength="3"
+              maxlength="20"
+              #username="ngModel"   />
+            </div>
+    
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form2Example27">Password</label>
+                <input
+                type="password"
+                class="form-control form-control-lg"
+                name="password"
+                [(ngModel)]="form.password"
+                required
+                minlength="6"
+                #password="ngModel"
+              />
+            </div>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form2Example27">Email</label>
+              <input type="text" id="form2Example27" class="form-control form-control-lg" [(ngModel)]="form.email"
+              name="email"
+              required
+              email
+              #email="ngModel"  />
+            </div>
+            <div class="pt-1 mb-4">
+              <button class="btn btn-outline-success btn-lg btn-block">Crear cuenta</button>
+            </div>
+            <p class="small mb-5 pb-lg-2"><a class="text-muted" href="#!">He onvidado mi contraseña</a></p>
+            <p>¿Ya tienes una cuenta? <a [routerLink]="['/login']" class="link-success">Iniciar sesión</a></p>
+    
+          </form>
+    
+        </div>
+    
+      </div>
+      <div class="col-sm-6 px-0 d-none d-md-block">
+        <img src="assets\image-login.jpg" alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
+      </div>
+    </div>
+    </div>

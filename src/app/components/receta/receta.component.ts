@@ -19,7 +19,9 @@ export class RecetaComponent implements OnInit {
      body: null,
      userName: null,
    }
+  localUserIsLogged : any
   recetaId: number = 0;
+  isUserLoggedIn: boolean = false;
   constructor(
      private recetaService: recetaService,
      private route : ActivatedRoute,
@@ -28,13 +30,22 @@ export class RecetaComponent implements OnInit {
      ) { }
 
   ngOnInit(): void {
-    this.currentUser = this.token.getUser();
     this.route.queryParams.subscribe( params =>{
         this.recetaId = params['recetaId'];
-        this.form.body = "";
-        this.form.userName = this.currentUser.username;
     })
-
+    if(this.token.getToken() === null){
+      this.form.userName = 'Anónimo';
+    }else{
+      this.currentUser = this.token.getUser();
+      this.form.userName = this.currentUser.username;
+    }
+    this.form.body = "";   
+    this.localUserIsLogged = sessionStorage.getItem("isUserLogged"); 
+    if(this.localUserIsLogged==="yes"){
+      this.isUserLoggedIn = true;
+    }else{
+      this.isUserLoggedIn = false;
+    }
     this.recetaService.getReceta(this.recetaId).subscribe(
         data =>{
           this.receta = data;
@@ -47,15 +58,15 @@ export class RecetaComponent implements OnInit {
     )
   }
   public save(){
+    
     this.comentService.addComentario(this.form, this.recetaId).subscribe(
       (res: any) =>{
-        
           alert("Comentario subido con exito");
           const currentRoute = this.route.url;
           location.reload(); 
       },
       (err: any) =>{
-        alert("Receta dada de alta con exito!")
+        alert("Algo a salido mal")
       }
     )
   }

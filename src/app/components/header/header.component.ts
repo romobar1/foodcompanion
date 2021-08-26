@@ -20,7 +20,6 @@ export class HeaderComponent implements OnInit {
   constructor(private tokenStorageService: TokenStorageService, private router: Router,private dataSharingService: DataSharingService ){
     this.dataSharingService.isUserLoggedIn.subscribe( value => {
       this.isUserLoggedIn = value;
-      localStorage.setItem("isUserLogged", "yes");
   });
 
   }
@@ -37,7 +36,7 @@ export class HeaderComponent implements OnInit {
 
       this.username = user.username;
 
-      let localUserIsLogged = localStorage.getItem("isUserLogged"); 
+      let localUserIsLogged = sessionStorage.getItem("isUserLogged"); 
       if(localUserIsLogged==="yes"){
         this.isUserLoggedIn = true
       }
@@ -54,6 +53,7 @@ export class HeaderComponent implements OnInit {
   }
   
   someMethodThatPerformsUserLogin() {
+    window.sessionStorage.removeItem("isUserLogged")
     this.dataSharingService.isUserLoggedIn.next(false);
 }
 

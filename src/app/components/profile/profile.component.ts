@@ -5,6 +5,7 @@ import { TokenStorageService } from '../../_services/token-storage.service';
 import { recetaService } from '../../_services/receta.service';
 import { Recetario } from 'src/app/interfaces/recetario';
 import { recetarioService } from 'src/app/_services/recetarios.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -19,10 +20,14 @@ export class ProfileComponent implements OnInit {
   public recetas!: Receta[];
   public recetarios!: Recetario[];
 
-  constructor(private token: TokenStorageService, private recetaService: recetaService, private recetarioService: recetarioService) { }
+  constructor(private token: TokenStorageService, private recetaService: recetaService,private router: Router, private recetarioService: recetarioService) { }
 
   ngOnInit(): void {
-    this.currentUser = this.token.getUser();
+    if( this.token.getToken() === null){
+      this.router.navigate(["/login"])
+    }else{
+      this.currentUser = this.token.getUser();
+    }
     this.getRecetasFromUser();
     this.getRecetariosFromUser()
   }
