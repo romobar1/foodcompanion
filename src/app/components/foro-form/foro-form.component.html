@@ -1,0 +1,29 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Crear tema de discusión</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+            <div class="form-outline mb-4">
+                <label class="form-label" for="tema">Titulo del tema de discusión</label>
+                <input type="text" id="name" class="form-control" name="name" [(ngModel)]="form.name" #name="ngModel">
+              </div>
+              <div class="form-outline mb-4">
+                <label class="form-label" for="body">Descripción del tema de discusiñon</label>
+                <textarea class="form-control" id="bodyLabel" rows="4" id="boody" name="body" [(ngModel)]="form.body" #body="ngModel"></textarea>
+              </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+    </div>
+  </ng-template>
+  
+  <button class="btn btn-lg btn-outline-success" (click)="open(content)">Crear tema</button>
+ 
+  

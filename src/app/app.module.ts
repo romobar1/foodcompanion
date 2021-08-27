@@ -17,6 +17,10 @@ import { FormRecetarioComponent } from './components/form-recetario/form-recetar
 import { FormEditRecetaComponent } from './components/form-edit-receta/form-edit-receta.component';
 import { FormUserComponent } from './components/form-user/form-user.component';
 import { FormAddToRecetarioComponent } from './components/form-add-to-recetario/form-add-to-recetario.component';
+import { ForoComponent } from './components/foro/foro.component';
+import { ForoFormComponent } from './components/foro-form/foro-form.component';
+import { PostComponent } from './components/post/post.component';
+import { FormReplyComponent } from './components/form-reply/form-reply.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +36,10 @@ import { FormAddToRecetarioComponent } from './components/form-add-to-recetario/
     FormEditRecetaComponent,
     FormUserComponent,
     FormAddToRecetarioComponent,
+    ForoComponent,
+    ForoFormComponent,
+    PostComponent,
+    FormReplyComponent,
   ],
   imports: [
     BrowserModule,

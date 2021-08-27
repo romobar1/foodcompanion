@@ -11,7 +11,7 @@
             <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="#">Foro</a>
+            <a class="nav-link active" routerLink="/foro">Foro</a>
           </li>
           <li class="nav-item" *ngIf="!isUserLoggedIn" >
             <button type="button" class="btn btn-success ms-2" routerLink="/login" routerLinkActive="active"> Iniciar sesión</button>

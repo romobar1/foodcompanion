@@ -1,0 +1,32 @@
+<div class="container vh-100">
+    <div class="row">
+        <div class="p-1 mt-2 mb-2 col-12 border">
+                <p class="h2 ms-2">{{foro.name}}</p>
+                <p class="fw-light ms-2">{{foro.description}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 d-flex justify-content-center p-2 mt-2 mb-2">
+            <app-foro-form [foroId]="foro.id"></app-foro-form>
+        </div>
+    </div>
+    <ng-container *ngIf="isPostsEmpty">
+        <div class="row">
+            <div class="col-12 p-2 mt-2 mb-2 border">
+                <p class="fw-bold">No existen temas en el foro!!!!</p>
+                Da de alta un tema para poder empezar.
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="!isPostsEmpty" >
+        <div class="list-group" *ngFor="let post of posts">
+            <a [routerLink]="['/post']" [queryParams]="{post: post.id}" class="list-group-item list-group-item-action" aria-current="true">
+              <div class="d-flex w-100 justify-content-between">
+                <h4 class="mb-1">{{post.name}}</h4>
+                <small>Fecha de creación: {{post.datePost}}</small>
+              </div>
+              Creado por : <small>{{post.userName}}</small>
+            </a>
+          </div>
+    </ng-container>
+</div>

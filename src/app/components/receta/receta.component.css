@@ -1,3 +1,6 @@
 .icon-size{
     font-size: 1rem;
 }
+p{
+    white-space:pre-wrap;
+}
