@@ -23,11 +23,7 @@ export class ProfileComponent implements OnInit {
   constructor(private token: TokenStorageService, private recetaService: recetaService,private router: Router, private recetarioService: recetarioService) { }
 
   ngOnInit(): void {
-    if( this.token.getToken() === null){
-      this.router.navigate(["/login"])
-    }else{
-      this.currentUser = this.token.getUser();
-    }
+    this.currentUser = this.token.getUser();
     this.getRecetasFromUser();
     this.getRecetariosFromUser()
   }

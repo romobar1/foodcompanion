@@ -21,6 +21,9 @@ import { ForoComponent } from './components/foro/foro.component';
 import { ForoFormComponent } from './components/foro-form/foro-form.component';
 import { PostComponent } from './components/post/post.component';
 import { FormReplyComponent } from './components/form-reply/form-reply.component';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { AutocompleteLibModule} from 'angular-ng-autocomplete';
 
 @NgModule({
   declarations: [
@@ -40,6 +43,8 @@ import { FormReplyComponent } from './components/form-reply/form-reply.component
     ForoFormComponent,
     PostComponent,
     FormReplyComponent,
+    ErrorPageComponent,
+    SearchBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +52,7 @@ import { FormReplyComponent } from './components/form-reply/form-reply.component
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    AutocompleteLibModule
   ],
   providers: [DataSharingService],
   bootstrap: [AppComponent]

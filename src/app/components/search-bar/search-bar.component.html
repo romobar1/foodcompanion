@@ -1,0 +1,17 @@
+<div class="ng-autocomplete">
+    <ng-autocomplete 
+      [data]="recetas"
+      [searchKeyword]="keyword"
+      [itemTemplate]="itemTemplate"
+      [notFoundTemplate]="notFoundTemplate"
+      placeholder="Buscar una receta">                                 
+    </ng-autocomplete>
+    
+    <ng-template #itemTemplate let-item>
+    <a [innerHTML]="item.title" [routerLink]="['/receta']" [queryParams]="{recetaId: item.id}"></a>
+    </ng-template>
+    
+    <ng-template #notFoundTemplate let-notFound>
+    <div [innerHTML]="notFound"></div>
+    </ng-template>
+    </div>

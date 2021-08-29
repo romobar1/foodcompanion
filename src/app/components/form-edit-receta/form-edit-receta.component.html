@@ -6,55 +6,55 @@
       </button>
     </div>
     <div class="modal-body ">
-        <form>
+        <form #addForm="ngForm">
           <!-- Titulo input -->
           <div class="form-outline mb-4">
-            <label class="form-label" for="form4Example1">Título</label>
-            <input type="text" id="form4Example1" class="form-control" name="titulo" [(ngModel)]="receta.title" #title="ngModel"/>
+            <label class="form-label" for="titulo">Título</label>
+            <input type="text" id="titulo" class="form-control" name="titulo" [(ngModel)]="receta.title" #title="ngModel"/>
           </div>
           <!-- Description input -->
           <div class="form-outline mb-4">
-            <label class="form-label" for="form4Example2">Descripción</label>
-            <textarea type="text"  rows="4" id="form4Example2" class="form-control" name="description" [(ngModel)]="receta.description" #description="ngModel" ></textarea>
+            <label class="form-label" for="desc">Descripción</label>
+            <textarea type="text" rows="4" id="desc" class="form-control" name="description" [(ngModel)]="receta.description" #description="ngModel" required ></textarea>
           </div>
           <div class="form-outline mb-4">
-            <label class="form-label" for="form4Example2">Imagen: </label>
-            <input class="form-control" type="file" name="imageUrl"  name="imageUrl" (change)="onFileSelected($event)" >       
+            <label class="form-label" for="img">Imagen: </label>
+            <input class="form-control" id="img" type="file" name="imageUrl"  name="imageUrl" (change)="onFileSelected($event)" >       
           </div>
           <div class="form-outline mb-4">
                 <div class="container">
                     <div class="row">
                         <div class="col-3">
-                            <label class="form-label" for="form4Example2"> Nº comensales</label> <input type="text" id="numComensales" name="numComensales" class="form-control" [(ngModel)]="receta.numComensales"  #numComensales="ngModel" />
+                            <label class="form-label" for="numComensales"> Nº comensales</label> <input type="number" id="numComensales" name="numComensales" class="form-control" [(ngModel)]="receta.numComensales"  #numComensales="ngModel" required />
                         </div>
                         <div class="col-3">
-                            <label class="form-label" for="form4Example2">Tiempo de preparación</label> <input type="text" id="tiempo" name="tiempo"  class="form-control" [(ngModel)]="receta.tiempo"  #tiempo="ngModel" />
+                            <label class="form-label" for="tiempo">Tiempo de preparación</label> <input type="number" id="tiempo" name="tiempo"  class="form-control" [(ngModel)]="receta.tiempo"  #tiempo="ngModel" required />
                         </div>
                         <div class="col-3">
-                            <label class="form-label" for="form4Example2">Tipo de receta</label> <input type="text" id="type" class="form-control" name="type" [(ngModel)]="receta.type" #type="ngModel"  />
+                            <label class="form-label" for="type">Tipo de receta</label> <input type="text" id="type" class="form-control" name="type" [(ngModel)]="receta.type" #type="ngModel" required />
                         </div>
                         <div class="col-3">
-                            <label class="form-label" for="form4Example2">Nivel de dificultad</label> <input type="text" id="dificultad" name="dificultad" [(ngModel)]="receta.dificultad" #dificultad="ngModel" class="form-control"  />
+                            <label class="form-label" for="dificultad">Nivel de dificultad</label> <input type="text" id="dificultad" name="dificultad" [(ngModel)]="receta.dificultad" #dificultad="ngModel" class="form-control"  required/>
                         </div>
                     </div>
                 </div>
           </div>
           <div class="form-outline mb-4">
-            <label class="form-label" for="form4Example3">Tags</label>
-            <div id="emailHelp" class="form-text">Los tags separados por comas.</div>
-            <input type="text" id="tags" class="form-control" name="tags" [(ngModel)]="tagsString" (change)="parseConditions()" [ngModel]="receta.tags" #tags="ngModel"  />
+            <label class="form-label" for="tag">Tags</label>
+            <div id="tag-info" class="form-text">Los tags separados por comas.</div>
+            <input type="text" id="tags" class="form-control" name="tags" [(ngModel)]="tagsString" (change)="parseConditions()" [ngModel]="receta.tags" #tags="ngModel" required  />
           </div>
           <div class="form-outline mb-4">
-            <label class="form-label" for="form4Example3">Ingredientes</label>
-            <textarea class="form-control" id="form4Example3" rows="4" id="ingredientes" name="ingredientes" [(ngModel)]="receta.ingredientes"   #ingredientes="ngModel"></textarea>
+            <label class="form-label" for="ing">Ingredientes</label>
+            <textarea class="form-control" id="ing" rows="4" id="ingredientes" name="ingredientes" [(ngModel)]="receta.ingredientes"   #ingredientes="ngModel" required></textarea>
           </div>
           <div class="form-outline mb-4">
-            <label class="form-label" for="form4Example3">Desarrollo de la receta</label>
-            <textarea class="form-control" id="form4Example3" rows="4" id="boody" name="body" [(ngModel)]="receta.body"  #body="ngModel"></textarea>
+            <label class="form-label" for="body">Desarrollo de la receta</label>
+            <textarea class="form-control" id="body" rows="4" id="boody" name="body" [(ngModel)]="receta.body"  #body="ngModel" required></textarea>
           </div>
         
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Editar receta</button>
+            <button type="button" class="btn btn-outline-dark" [disabled]="addForm.invalid"  (click)="modal.close('Save click')">Editar receta</button>
           </div>        
         </form>
     </div>

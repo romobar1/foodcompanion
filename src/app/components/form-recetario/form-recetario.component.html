@@ -6,19 +6,19 @@
       </button>
     </div>
     <div class="modal-body ">
-        <form>
+        <form #addForm="ngForm">
           <!-- Titulo input -->
           <div class="form-outline mb-4">
             <label class="form-label" for="form4Example1">Título</label>
-            <input type="text" id="form4Example1" class="form-control" name="titulo" [(ngModel)]="form.title" #title="ngModel" />
+            <input type="text" id="form4Example1" class="form-control" name="titulo" [(ngModel)]="form.title" #title="ngModel" required />
           </div>
           <!-- Description input -->
           <div class="form-outline mb-4">
             <label class="form-label" for="form4Example2">Descripción</label>
-            <textarea type="text"  rows="4" id="form4Example2" class="form-control" name="description" [(ngModel)]="form.description" #description="ngModel"  ></textarea>
+            <textarea type="text"  rows="4" id="form4Example2" class="form-control" name="description" [(ngModel)]="form.description" #description="ngModel" required  ></textarea>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')" >Añadir recetario</button>
+            <button type="button" class="btn btn-outline-dark" [disabled]="addForm.invalid" (click)="modal.close('Save click')" >Añadir recetario</button>
           </div>        
         </form>
     </div>

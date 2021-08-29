@@ -20,7 +20,6 @@ export class HomeComponent implements OnInit {
     this.recetaService.getAllReceta().subscribe(
          response =>{
           this.recetas = response._embedded.recetaList;
-          //alert("va");
       },
       (error: HttpErrorResponse) =>{
           alert(error.message);

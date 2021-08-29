@@ -15,7 +15,7 @@ export class postService{
     constructor(private http: HttpClient){}
 
     public addPost(form: any, userid: number, forumid: number): Observable<any> {
-        return this.http.post<any>(`${this.apiServletUrl}/post/add/user/${userid}/forum/${forumid}`, form, httpOptions )
+        return this.http.post<any>(`${this.apiServletUrl}/post/add/user/${userid}/forum/${forumid}`, form )
     }
 
     public getAllPosts(): Observable<any> {
@@ -23,6 +23,10 @@ export class postService{
     }
     public getPost(postId : number): Observable<any> {
         return this.http.get<any>(`${this.apiServletUrl}/post/find/${postId}`)
+    }
+
+    public closePost(postId : number): Observable<any> {
+        return this.http.put<any>(`${this.apiServletUrl}/post/setDisabled/${postId}`, httpOptions)
     }
     
 }

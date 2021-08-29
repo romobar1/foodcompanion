@@ -4,6 +4,7 @@ import { recetaService } from 'src/app/_services/receta.service';
 import { TokenStorageService } from '../../_services/token-storage.service';
 import {FileUploadService} from '../../_services/file-upload.service'
 import { Receta } from 'src/app/interfaces/receta';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 @Component({
   selector: 'app-form-edit-receta',
   templateUrl: './form-edit-receta.component.html',
@@ -40,42 +41,44 @@ export class FormEditRecetaComponent implements OnInit {
   open(content: any) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', size: 'xl'}).result.then((result: any) => {
       this.upload()
-      this.save()
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason: any) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
 
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
-  }
   
-  save() {
+  upload() {
     let filename = this.receta.imageURl;
-    if( this.currentFile === null || this.currentFileName === filename){
+    if( this.currentFile === undefined || this.currentFileName === filename){
       this.recetaService.updateReceta(this.receta).subscribe(
         Response =>{
-          alert("receta editada con exito sin subir foto")
+          alert("receta editada con éxito sin subir foto")
+        },
+        err=>{
+          alert("Algo a salido mal")
         }
       )
     }else{
-      this.recetaService.updateReceta(this.receta).subscribe(
-        this.upload
+      this.fileUploadService.upload(this.currentFile).subscribe(
+        (event: any) => {
+          if (event.type === HttpEventType.UploadProgress) {
+          } else if (event instanceof HttpResponse) {
+              this.save()
+          }
+        },
+        (err: any) => {
+          const msg = 'Could not upload the file: ' + this.currentFile.name;
+          alert(msg);
+        }
       )
     }
   }
 
-  upload() {
-    this.fileUploadService.upload(this.currentFile).subscribe(
-      (err: any) =>{
-        alert("Receta editada con exito subiendo image")
+  save() {
+    this.recetaService.updateReceta(this.receta).subscribe(
+      Response=>{
+        alert("Receta dada de alta con éxito")
+      },
+      err=>{
+        alert("Algo a salido mal")
       }
     )
 }

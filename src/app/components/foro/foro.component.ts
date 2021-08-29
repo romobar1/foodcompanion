@@ -3,6 +3,8 @@ import { Foro } from 'src/app/interfaces/foro';
 import { Post } from 'src/app/interfaces/post';
 import { foroService } from 'src/app/_services/foro.service';
 import { postService } from 'src/app/_services/posts.service';
+import { TokenStorageService } from 'src/app/_services/token-storage.service';
+import { UserControlService } from 'src/app/_services/user-control.service';
 
 @Component({
   selector: 'app-foro',
@@ -13,8 +15,8 @@ export class ForoComponent implements OnInit {
   foro!: Foro;
   posts!: Post[];
   isPostsEmpty = true;
-  constructor(private foroService: foroService, private postService: postService) { }
-
+  isUserLogged!: boolean;
+  constructor(private foroService: foroService, private postService: postService, private userControl: UserControlService) { }
   ngOnInit(): void {
     this.foroService.getForo().subscribe(
       data =>{
@@ -32,5 +34,6 @@ export class ForoComponent implements OnInit {
         this.posts = data._embedded.postList;
       }
     );
+    this.isUserLogged = this.userControl.isLogged();
   }
 }

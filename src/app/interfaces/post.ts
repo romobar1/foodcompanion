@@ -5,6 +5,7 @@ export interface Post{
     name: string;
     body: string;
     replies: Reply[];
-    userName: string
-    datePost: string
+    userName: string;
+    datePost: string;
+    disabled: boolean;
 }

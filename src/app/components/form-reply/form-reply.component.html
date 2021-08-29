@@ -6,15 +6,15 @@
       </button>
     </div>
     <div class="modal-body">
-      <form>
+      <form #addForm="ngForm">
         <div class="form-group">
              <label for="body" class="form-label">Respuesta</label>
-             <textarea class="form-control" id="body" rows="3" name="body" [(ngModel)]="form.body" #body="ngModel"></textarea>
+             <textarea class="form-control" id="body" rows="3" name="body" [(ngModel)]="form.body" #body="ngModel" required></textarea>
         </div>
       </form>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Registrar respuesta</button>
+      <button type="button" class="btn btn-outline-dark" [disabled]="addForm.invalid" (click)="modal.close('Save click')">Registrar respuesta</button>
     </div>
   </ng-template>
   

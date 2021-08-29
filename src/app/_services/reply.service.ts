@@ -15,7 +15,7 @@ export class replyService{
     constructor(private http: HttpClient){}
 
     public addReply(postId: number, form :any): Observable<any> {
-        return this.http.post<any>(`${this.apiServletUrl}/replies/add/${postId}`,form , httpOptions )
+        return this.http.post<any>(`${this.apiServletUrl}/replies/add/${postId}`,form )
     }
 
 

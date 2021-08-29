@@ -7,7 +7,14 @@
     </div>
     <div class="row">
         <div class="col-12 d-flex justify-content-center p-2 mt-2 mb-2">
-            <app-foro-form [foroId]="foro.id"></app-foro-form>
+            <ng-container *ngIf="isUserLogged">
+                <app-foro-form [foroId]="foro.id"></app-foro-form>
+            </ng-container>
+        </div>
+        <div class="col-12 d-flex justify-content-center mb-2 " >
+            <ng-container *ngIf="!isUserLogged">
+                <p>Para participar creat temas en el foro, <a [routerLink]="['/register']" class="link-success">crea una cuenta de usuario </a> o <a [routerLink]="['/login']" class="link-success">incia sesión</a>.</p>
+            </ng-container>
         </div>
     </div>
     <ng-container *ngIf="isPostsEmpty">

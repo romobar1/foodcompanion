@@ -6,7 +6,7 @@
       </button>
     </div>
     <div class="modal-body">
-      <form>
+      <form #addForm="ngForm">
         <div class="form-group">
             <div class="form-outline mb-4">
                 <label class="form-label" for="tema">Titulo del tema de discusión</label>
@@ -14,13 +14,13 @@
               </div>
               <div class="form-outline mb-4">
                 <label class="form-label" for="body">Descripción del tema de discusiñon</label>
-                <textarea class="form-control" id="bodyLabel" rows="4" id="boody" name="body" [(ngModel)]="form.body" #body="ngModel"></textarea>
+                <textarea class="form-control" id="bodyLabel" rows="4" id="boody" name="body" [(ngModel)]="form.body" #body="ngModel" required></textarea>
               </div>
         </div>
       </form>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+      <button type="button" class="btn btn-outline-success" [disabled]="addForm.invalid" (click)="modal.close('Save click')">Save</button>
     </div>
   </ng-template>
   

@@ -1,9 +1,19 @@
 <div class="container vh-100">
+    <ng-container *ngIf="isUserLogged && !post.disabled && this.post.userName === this.currentUser.username">
+        <div class="row p-1 mt-2">
+            <div class="col-12 d-flex justify-content-end">
+                <button type="button" class="btn btn-outline-danger" (click)="closeTema()">Cerrar tema</button>
+            </div>
+        </div>
+    </ng-container>
     <div class="row p-1 mt-2">
         <div class="col-3 ">
             <ul class="list-group">
                 <li class="list-group-item">Usuario: {{post.userName}}</li>
                 <li class="list-group-item">Fecha de creación: {{post.datePost}}</li>
+                <ng-container *ngIf="post.disabled">
+                    <li class="list-group-item">Tema cerrado <i class="bi bi-door-closed"></i></li>
+                </ng-container>
               </ul>
         </div>
         <div class="col-9">
@@ -17,9 +27,21 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12 d-flex justify-content-end">
-            <app-form-reply [postId]="post.id"></app-form-reply>
-        </div>
+        <ng-container *ngIf="isUserLogged && !post.disabled">
+            <div class="col-12 d-flex justify-content-end">
+                <app-form-reply [postId]="post.id"></app-form-reply>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="post.disabled">
+            <div class="col-12 d-flex justify-content-end">
+                <p>El tema se encuentra cerrado.</p>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="!isUserLogged">
+            <div class="col-12 d-flex justify-content-end">
+                <p>Para crear partiticar el en post, <a [routerLink]="['/register']" class="link-success">crea una cuenta de usuario</a> o <a [routerLink]="['/login']" class="link-success">incia sesión</a>.</p>
+            </div>
+        </ng-container>
     </div>
     <ng-container>
         <div class="row p-1 mt-2" *ngFor="let reply of post?.replies">

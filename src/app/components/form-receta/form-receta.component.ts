@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { recetaService } from 'src/app/_services/receta.service';
 import { TokenStorageService } from '../../_services/token-storage.service';
 import {FileUploadService} from '../../_services/file-upload.service'
+import { ProfileComponent } from '../profile/profile.component';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 @Component({
   selector: 'app-from-receta',
   templateUrl: './form-receta.component.html',
@@ -27,7 +29,11 @@ export class FormRecetaComponent implements OnInit {
   empList: Array<String> = [];
   closeResult = '';
   currentFile!: File;
-  constructor(private modalService: NgbModal, private recetaService: recetaService, private token: TokenStorageService, private fileUploadService: FileUploadService) {}
+  constructor(private modalService: NgbModal
+            , private recetaService: recetaService
+            , private token: TokenStorageService
+            , private fileUploadService: FileUploadService
+            , private profileComponen: ProfileComponent ) {}
 
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
@@ -43,33 +49,32 @@ export class FormRecetaComponent implements OnInit {
   open(content: any) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title' ,size: 'xl'}).result.then((result: any) => {
       this.upload()
-      this.save()
       this.closeResult = `Closed with: ${result}`;
-    }, (reason: any) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
 
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
-  }
   
   save() {
       this.recetaService.addReceta(this.form, this.currentUser.username).subscribe(
-        this.upload
+        Response =>{
+          alert("Receta dada de alta con exito ")
+        },err=>{
+          alert("Algo a salido mal")
+        }
       )
   }
 
   upload() {
     this.fileUploadService.upload(this.currentFile).subscribe(
-      (err: any) =>{
-        alert("Receta dada de alta con exito!")
+      (event: any) => {
+        if (event.type === HttpEventType.UploadProgress) {
+        } else if (event instanceof HttpResponse) {
+            this.save()
+        }
+      },
+      (err: any) => {
+        const msg = 'Could not upload the file: ' + this.currentFile.name;
+        alert(msg);
       }
     )
 }
