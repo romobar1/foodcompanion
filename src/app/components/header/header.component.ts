@@ -59,5 +59,12 @@ export class HeaderComponent implements OnInit {
   sendLogin() {
     this.dataSharingService.isUserLoggedIn.next(false);
   }
+
+  closeSesion(){
+    if (confirm('¿Cerrar sesión?')) {
+     this.logout();
+    }
+  }
+
   
 }

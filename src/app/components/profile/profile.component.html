@@ -1,10 +1,16 @@
 <div class="container mt-4 " *ngIf="currentUser; else loggedOut">
-  <header class="jumbotron">
-    <h3>
-      Hola <strong>{{ currentUser.username }}</strong> !!!
-    </h3>
-  </header>
-  <p>
+  <div class="container mb-4">
+    <div class="row">
+      <div class="col-9">
+        <h3>
+          Hola <strong>{{ currentUser.username }}</strong> !!!
+        </h3>
+      </div>
+      <div class="col-3">
+        <app-form-update-password></app-form-update-password>
+      </div>
+    </div>
+  </div>
 
 </div>
 
@@ -55,7 +61,7 @@
                             <div class="btn-group align-top">
                               <app-form-edit-receta [recetaId]="receta.id"></app-form-edit-receta>
                               <button class="btn btn-sm btn-outline-secondary " type="button"
-                                (click)="deleteRecetasFromUser(receta.id)"><i class="fa fa-trash"></i></button>
+                                (click)="deleteReceta(receta.id)"><i class="fa fa-trash"></i></button>
                               <button class="btn btn-sm btn-outline-secondary " [routerLink]="['/receta']"
                                 [queryParams]="{recetaId: receta.id}" type="button"><i class="bi bi-eye"></i></button>
                             </div>

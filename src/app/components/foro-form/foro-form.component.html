@@ -13,14 +13,14 @@
                 <input type="text" id="name" class="form-control" name="name" [(ngModel)]="form.name" #name="ngModel">
               </div>
               <div class="form-outline mb-4">
-                <label class="form-label" for="body">Descripción del tema de discusiñon</label>
+                <label class="form-label" for="body">Descripción del tema de discusión</label>
                 <textarea class="form-control" id="bodyLabel" rows="4" id="boody" name="body" [(ngModel)]="form.body" #body="ngModel" required></textarea>
               </div>
         </div>
       </form>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-success" [disabled]="addForm.invalid" (click)="modal.close('Save click')">Save</button>
+      <button type="button" class="btn btn-outline-success" [disabled]="addForm.invalid" (click)="modal.close('Save click')">Añadir tema</button>
     </div>
   </ng-template>
   

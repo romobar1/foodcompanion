@@ -17,7 +17,7 @@
             <button type="button" class="btn btn-success ms-2" routerLink="/login" routerLinkActive="active"> Iniciar sesión</button>
           </li>
           <li class="nav-item" *ngIf="isUserLoggedIn">
-            <button type="button" class="btn btn-primary ms-2" routerLinkActive="active" routerLink="" (click)="logout()"> Cerrar sesión</button>
+            <button type="button" class="btn btn-primary ms-2" routerLinkActive="active" routerLink="" (click)="closeSesion()"> Cerrar sesión</button>
           </li>
           <li class="nav-item " *ngIf="isUserLoggedIn">
             <button type="button" class="btn btn-secondary ms-2" routerLinkActive="active" routerLink="/profile" >Pefil</button>

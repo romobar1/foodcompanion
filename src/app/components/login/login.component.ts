@@ -3,6 +3,7 @@ import { AuthService } from '../../_services/auth.service';
 import { TokenStorageService } from '../../_services/token-storage.service';
 import { Router } from '@angular/router';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
+import { FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,16 +16,37 @@ export class LoginComponent implements OnInit {
   };
   isLoggedIn = false;
   isLoginFailed = false;
-  errorMessage = '';
+  errorMessage = 'Error usuario o la contraseña erroneos';
   roles: string[] = [];
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private router: Router, private dataSharingService: DataSharingService) { }
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private router: Router, private dataSharingService: DataSharingService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getUser().roles;
     }
+    this.form = this.formBuilder.group(
+      {
+        username: [
+          '',
+          [
+            Validators.required,
+          ]
+        ],
+        password: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(6),
+            Validators.maxLength(40)
+          ]
+        ],
+        confirmPassword: ['', Validators.required],
+        acceptTerms: [false, Validators.requiredTrue]
+      }
+    );
+  
   }
 
   onSubmit(): void {
@@ -42,7 +64,6 @@ export class LoginComponent implements OnInit {
         this.someMethodThatPerformsUserLogin()
       },
       err => {
-        this.errorMessage = err.error.message;
         this.isLoginFailed = true;
       }
     );

@@ -28,4 +28,12 @@ export class AuthService {
       password
     }, httpOptions);
   }
+
+  updatePassword(username: string, password: string, newPassword: string): Observable<any> {
+    return this.http.put(AUTH_API + 'password', {
+      username,
+      password,
+      newPassword
+    }, httpOptions);
+  }
 }

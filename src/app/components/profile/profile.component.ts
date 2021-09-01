@@ -82,5 +82,10 @@ export class ProfileComponent implements OnInit {
       );
   }
 
+  public deleteReceta(id: number){
+    if(confirm("¿Estas seguro de querer borrar la receta?")){
+        this.deleteRecetasFromUser(id)
+    }
+  }
 
 }

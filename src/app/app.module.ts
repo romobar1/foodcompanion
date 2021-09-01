@@ -24,6 +24,7 @@ import { FormReplyComponent } from './components/form-reply/form-reply.component
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { AutocompleteLibModule} from 'angular-ng-autocomplete';
+import { FormUpdatePasswordComponent } from './components/form-update-password/form-update-password.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { AutocompleteLibModule} from 'angular-ng-autocomplete';
     FormReplyComponent,
     ErrorPageComponent,
     SearchBarComponent,
+    FormUpdatePasswordComponent,
   ],
   imports: [
     BrowserModule,
